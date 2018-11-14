@@ -63,5 +63,4 @@ public class Plan {
 	public void setCantInternet(double cantInternet) {
 		this.cantInternet = cantInternet;
 	}
-
 }
