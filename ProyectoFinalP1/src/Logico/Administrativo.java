@@ -9,7 +9,6 @@ public class Administrativo extends Empleado {
 		super(nombre, apellido, direccion, cedula, cargo, fechadeNacimiento, fechadeIngreso);
 		this.areaTrabajo = areaTrabajo;
 	}
-	
 	public String getAreaTrabajo() {
 		return areaTrabajo;
 	}

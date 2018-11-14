@@ -3,7 +3,7 @@ package Logico;
 import java.util.ArrayList;
 
 public class Tricom {
-
+	
 	private ArrayList<Cliente> misClientes;
 	private ArrayList<Empleado> misEmpleados;
 	private ArrayList<Plan> misPlanes;
@@ -32,6 +32,5 @@ public class Tricom {
 	public void setMisPlanes(ArrayList<Plan> misPlanes) {
 		this.misPlanes = misPlanes;
 	}
-	
-	
 }
+
