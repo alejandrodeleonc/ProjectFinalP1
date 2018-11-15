@@ -6,16 +6,16 @@ public class Contrato {
 
 	private Empleado miEmpleado;
 	private Cliente miCliente;
-	private ArrayList<Plan>misPlanes;
+	private ArrayList<Plan>misPlanes = new ArrayList<>();
 	private float precioTotal;
 	
-	public Contrato(Empleado miEmpleado, Cliente miCliente, ArrayList<Plan> misPlanes, float precioTotal) {
+	public Contrato(Empleado miEmpleado, Cliente miCliente, Plan miPlan, float precio) {
 		super();
 		this.miEmpleado = miEmpleado;
 		this.miCliente = miCliente;
-		this.misPlanes = misPlanes;
-		this.precioTotal = precioTotal;
-	}
+		this.misPlanes.add(miPlan);
+		this.precioTotal = (float)(precio * 1.30);	
+		}
 	public Empleado getMiEmpleado() {
 		return miEmpleado;
 	}
@@ -31,8 +31,8 @@ public class Contrato {
 	public ArrayList<Plan> getMisPlanes() {
 		return misPlanes;
 	}
-	public void setMisPlanes(ArrayList<Plan> misPlanes) {
-		this.misPlanes = misPlanes;
+	public void setMisPlanes(Plan miPlan) {
+		this.misPlanes.add(miPlan);
 	}
 	public float getPrecioTotal() {
 		return precioTotal;

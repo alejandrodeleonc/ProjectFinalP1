@@ -8,7 +8,7 @@ public class Personal extends Cliente {
 	
 	public Personal(String nombre, String apellido, String direccion, String telefono, String fechadeNacimiento,
 			String fechadeIngreso, ArrayList<Plan> misPlanes, String cedula) {
-		super(nombre, apellido, direccion, telefono, fechadeNacimiento, fechadeIngreso, misPlanes);
+		super(nombre, apellido, direccion, telefono, fechadeNacimiento, fechadeIngreso);
 		this.cedula = cedula;
 	}
 	public String getCedula() {

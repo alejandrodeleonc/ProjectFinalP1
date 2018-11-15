@@ -13,7 +13,7 @@ public abstract class Cliente {
 	protected ArrayList<Plan> misPlanes;
 	
 	public Cliente(String nombre, String apellido, String direccion, String telefono, String fechadeNacimiento,
-			String fechadeIngreso, ArrayList<Plan> misPlanes) {
+			String fechadeIngreso) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -21,7 +21,7 @@ public abstract class Cliente {
 		this.telefono = telefono;
 		this.fechadeNacimiento = fechadeNacimiento;
 		this.fechadeIngreso = fechadeIngreso;
-		this.misPlanes = misPlanes;
+		this.misPlanes = new ArrayList<>();
 	}
 	
 	public String getNombre() {
@@ -63,8 +63,8 @@ public abstract class Cliente {
 	public ArrayList<Plan> getMisPlanes() {
 		return misPlanes;
 	}
-	public void setMisPlanes(ArrayList<Plan> misPlanes) {
-		this.misPlanes = misPlanes;
+	public void addPlan(Plan nuevoPlan) {
+		this.misPlanes.add(nuevoPlan);
 	}
 	
 }

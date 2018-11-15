@@ -5,7 +5,13 @@ import java.util.ArrayList;
 public class Factura {
 	
 	private Cliente miCliente;
-	private ArrayList<Plan> misPlanes;
+	private ArrayList<Plan> misPlanes = new ArrayList<>();
+	
+	public Factura(Cliente miCliente, Plan plan) {
+		super();
+		this.miCliente = miCliente;
+		this.misPlanes.add(plan);
+	}
 
 	public Cliente getMiCliente() {
 		return miCliente;
@@ -16,7 +22,8 @@ public class Factura {
 	public ArrayList<Plan> getMisPlanes() {
 		return misPlanes;
 	}
-	public void setMisPlanes(ArrayList<Plan> misPlanes) {
-		this.misPlanes = misPlanes;
+	public void setMisPlanes(Plan plan) {
+		this.misPlanes.add(plan);
 	}
+
 }

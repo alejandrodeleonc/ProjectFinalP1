@@ -8,8 +8,8 @@ public class Empresarial extends Cliente {
 	private String nombreEmpresa;
 	
 	public Empresarial(String nombre, String apellido, String direccion, String telefono, String fechadeNacimiento,
-			String fechadeIngreso, ArrayList<Plan> misPlanes, double rnc, String nombreEmpresa) {
-		super(nombre, apellido, direccion, telefono, fechadeNacimiento, fechadeIngreso, misPlanes);
+			String fechadeIngreso, double rnc, String nombreEmpresa) {
+		super(nombre, apellido, direccion, telefono, fechadeNacimiento, fechadeIngreso);
 		this.rnc = rnc;
 		this.nombreEmpresa = nombreEmpresa;
 	}
