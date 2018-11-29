@@ -7,9 +7,9 @@ public class Empresarial extends Cliente {
 	private double rnc;
 	private String nombreEmpresa;
 	
-	public Empresarial(String nombre, String apellido, String direccion, String telefono, String fechadeNacimiento,
+	public Empresarial(int codigo, String nombre, String apellido, String direccion, String telefono, String fechadeNacimiento,
 			String fechadeIngreso, double rnc, String nombreEmpresa) {
-		super(nombre, apellido, direccion, telefono, fechadeNacimiento, fechadeIngreso);
+		super(codigo, nombre, apellido, direccion, telefono, fechadeNacimiento, fechadeIngreso);
 		this.rnc = rnc;
 		this.nombreEmpresa = nombreEmpresa;
 	}

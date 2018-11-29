@@ -7,15 +7,17 @@ public abstract class Empleado {
 	protected String direccion;
 	protected String cedula;
 	protected String cargo;
+	protected float salario;
 	protected String fechadeNacimiento;
 	protected String fechadeIngreso;
 	
-	public Empleado(String nombre, String apellido, String direccion, String cedula, String cargo,
+	public Empleado(String nombre, String apellido, String direccion, String cedula, String cargo, float salario,
 			String fechadeNacimiento, String fechadeIngreso) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
+		this.salario = salario;
 		this.cedula = cedula;
 		this.cargo = cargo;
 		this.fechadeNacimiento = fechadeNacimiento;
@@ -44,6 +46,13 @@ public abstract class Empleado {
 	}
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
+	}
+	
+	public float getSalario() {
+		return salario;
+	}
+	public void setSalario(float salario) {
+		this.salario = salario;
 	}
 	public String getCargo() {
 		return cargo;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Cliente {
 	
+	protected int codigo;
 	protected String nombre;
 	protected String apellido;
 	protected String direccion;
@@ -12,9 +13,11 @@ public abstract class Cliente {
 	protected String fechadeIngreso;
 	protected ArrayList<Plan> misPlanes;
 	
-	public Cliente(String nombre, String apellido, String direccion, String telefono, String fechadeNacimiento,
+	
+	public Cliente(int cod, String nombre, String apellido, String direccion, String telefono, String fechadeNacimiento,
 			String fechadeIngreso) {
 		super();
+		this.codigo = cod;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
@@ -24,6 +27,11 @@ public abstract class Cliente {
 		this.misPlanes = new ArrayList<>();
 	}
 	
+	
+	public int getCodigo() {
+		return codigo;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

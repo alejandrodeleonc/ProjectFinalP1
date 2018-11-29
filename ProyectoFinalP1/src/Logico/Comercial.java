@@ -6,8 +6,8 @@ public class Comercial extends Empleado {
 	private boolean mercadeo;
 	
 	public Comercial(String nombre, String apellido, String direccion, String cedula, String cargo,
-			String fechadeNacimiento, String fechadeIngreso, boolean servicio, boolean mercadeo) {
-		super(nombre, apellido, direccion, cedula, cargo, fechadeNacimiento, fechadeIngreso);
+			String fechadeNacimiento, String fechadeIngreso, boolean servicio, boolean mercadeo, float salario) {
+		super(nombre, apellido, direccion, cedula, cargo, salario, fechadeNacimiento, fechadeIngreso);
 		this.servicio = servicio;
 		this.mercadeo = mercadeo;
 	}
