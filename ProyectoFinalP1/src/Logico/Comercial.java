@@ -4,15 +4,13 @@ public class Comercial extends Empleado {
 	
 	private boolean servicio;
 	private boolean mercadeo;
-	
-	public Comercial(String nombre, String apellido, String direccion, String cedula, String cargo,
-			String fechadeNacimiento, String fechadeIngreso, boolean servicio, boolean mercadeo, float salario) {
-		super(nombre, apellido, direccion, cedula, cargo, salario, fechadeNacimiento, fechadeIngreso);
+	public Comercial(int codigo, String nombre, double telefono, String direccion, double sueldo, String usuario,
+			String clave, boolean servicio, boolean mercadeo) {
+		super(codigo, nombre, telefono, direccion, sueldo, usuario, clave);
 		this.servicio = servicio;
 		this.mercadeo = mercadeo;
 	}
-	
-	boolean isServicio() {
+	public boolean isServicio() {
 		return servicio;
 	}
 	public void setServicio(boolean servicio) {
@@ -24,4 +22,5 @@ public class Comercial extends Empleado {
 	public void setMercadeo(boolean mercadeo) {
 		this.mercadeo = mercadeo;
 	}
+	
 }

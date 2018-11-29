@@ -3,19 +3,28 @@ package Logico;
 import java.util.ArrayList;
 
 public class Contrato {
-
+	
+	private int codigo;
 	private Empleado miEmpleado;
 	private Cliente miCliente;
-	private ArrayList<Plan>misPlanes = new ArrayList<>();
-	private float precioTotal;
-	
-	public Contrato(Empleado miEmpleado, Cliente miCliente, Plan miPlan, float precio) {
+	private ArrayList<Plan>misPlanes;
+	private double precioneto;
+	private double precioBruto;
+	public Contrato(int codigo, Empleado miEmpleado, Cliente miCliente, ArrayList<Plan> misPlanes) {
 		super();
+		this.codigo = codigo;
 		this.miEmpleado = miEmpleado;
 		this.miCliente = miCliente;
-		this.misPlanes.add(miPlan);
-		this.precioTotal = (float)(precio * 1.30);	
-		}
+		this.misPlanes = misPlanes;
+		this.precioneto = setPrecioneto();
+		this.precioBruto = setPrecioBruto();
+	}
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
 	public Empleado getMiEmpleado() {
 		return miEmpleado;
 	}
@@ -31,14 +40,31 @@ public class Contrato {
 	public ArrayList<Plan> getMisPlanes() {
 		return misPlanes;
 	}
-	public void setMisPlanes(Plan miPlan) {
-		this.misPlanes.add(miPlan);
+	public void setMisPlanes(Plan plan) {
+		this.misPlanes.add(plan);
 	}
-	public float getPrecioTotal() {
-		return precioTotal;
+	public double getPrecioneto() {
+		return precioneto;
 	}
-	public void setPrecioTotal(float precioTotal) {
-		this.precioTotal = precioTotal;
+	public double setPrecioneto() {
+		double total = 0 ;
+		for(int i =0; i<misPlanes.size();i++){
+			total += misPlanes.get(i).getPrecio();
+		}
+		return total;
 	}
+	public double getPrecioBruto() {
+		return precioBruto;
+	}
+	public double setPrecioBruto() {
+		double total;
+		total = (this.precioneto * 1.3);
+		return total;
+	}
+	
+	
+	
+	
+	
 	
 }

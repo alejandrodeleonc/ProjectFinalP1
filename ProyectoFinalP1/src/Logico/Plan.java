@@ -2,17 +2,19 @@ package Logico;
 
 public class Plan {
 	
+	private int codigo;
 	private String nombrePlan;
 	private boolean telefono;
 	private boolean tv;
 	private boolean internet;
-	private double cantMinutos;
-	private double cantCanales;
-	private double cantInternet;
-	
-	public Plan(String nombrePlan, boolean telefono, boolean tv, boolean internet, double cantMinutos,
-			double cantCanales, double cantInternet) {
+	private int cantMinutos;
+	private int cantCanales;
+	private int cantInternet;
+	private double precio;
+	public Plan(int codigo, String nombrePlan, boolean telefono, boolean tv, boolean internet, int cantMinutos,
+			int cantCanales, int cantInternet, double precio) {
 		super();
+		this.codigo = codigo;
 		this.nombrePlan = nombrePlan;
 		this.telefono = telefono;
 		this.tv = tv;
@@ -20,6 +22,13 @@ public class Plan {
 		this.cantMinutos = cantMinutos;
 		this.cantCanales = cantCanales;
 		this.cantInternet = cantInternet;
+		this.precio = precio;
+	}
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	public String getNombrePlan() {
 		return nombrePlan;
@@ -45,22 +54,30 @@ public class Plan {
 	public void setInternet(boolean internet) {
 		this.internet = internet;
 	}
-	public double getCantMinutos() {
+	public int getCantMinutos() {
 		return cantMinutos;
 	}
-	public void setCantMinutos(double cantMinutos) {
+	public void setCantMinutos(int cantMinutos) {
 		this.cantMinutos = cantMinutos;
 	}
-	public double getCantCanales() {
+	public int getCantCanales() {
 		return cantCanales;
 	}
-	public void setCantCanales(double cantCanales) {
+	public void setCantCanales(int cantCanales) {
 		this.cantCanales = cantCanales;
 	}
-	public double getCantInternet() {
+	public int getCantInternet() {
 		return cantInternet;
 	}
-	public void setCantInternet(double cantInternet) {
+	public void setCantInternet(int cantInternet) {
 		this.cantInternet = cantInternet;
 	}
+	public double getPrecio() {
+		return precio;
+	}
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+		
+	
 }

@@ -2,26 +2,29 @@ package Logico;
 
 public abstract class Empleado {
 	
+	protected int codigo;
 	protected String nombre;
-	protected String apellido;
+	protected double telefono;
 	protected String direccion;
-	protected String cedula;
-	protected String cargo;
-	protected float salario;
-	protected String fechadeNacimiento;
-	protected String fechadeIngreso;
-	
-	public Empleado(String nombre, String apellido, String direccion, String cedula, String cargo, float salario,
-			String fechadeNacimiento, String fechadeIngreso) {
+	protected double sueldo;
+	protected String usuario;
+	protected String clave;
+	public Empleado(int codigo, String nombre, double telefono, String direccion, double sueldo, String usuario,
+			String clave) {
 		super();
+		this.codigo = codigo;
 		this.nombre = nombre;
-		this.apellido = apellido;
+		this.telefono = telefono;
 		this.direccion = direccion;
-		this.salario = salario;
-		this.cedula = cedula;
-		this.cargo = cargo;
-		this.fechadeNacimiento = fechadeNacimiento;
-		this.fechadeIngreso = fechadeIngreso;
+		this.sueldo = sueldo;
+		this.usuario = usuario;
+		this.clave = clave;
+	}
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	public String getNombre() {
 		return nombre;
@@ -29,11 +32,11 @@ public abstract class Empleado {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getApellido() {
-		return apellido;
+	public double getTelefono() {
+		return telefono;
 	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setTelefono(double telefono) {
+		this.telefono = telefono;
 	}
 	public String getDireccion() {
 		return direccion;
@@ -41,35 +44,27 @@ public abstract class Empleado {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public String getCedula() {
-		return cedula;
+	public double getSueldo() {
+		return sueldo;
 	}
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
+	public void setSueldo(double sueldo) {
+		this.sueldo = sueldo;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	public String getClave() {
+		return clave;
+	}
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 	
-	public float getSalario() {
-		return salario;
-	}
-	public void setSalario(float salario) {
-		this.salario = salario;
-	}
-	public String getCargo() {
-		return cargo;
-	}
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-	public String getFechadeNacimiento() {
-		return fechadeNacimiento;
-	}
-	public void setFechadeNacimiento(String fechadeNacimiento) {
-		this.fechadeNacimiento = fechadeNacimiento;
-	}
-	public String getFechadeIngreso() {
-		return fechadeIngreso;
-	}
-	public void setFechadeIngreso(String fechadeIngreso) {
-		this.fechadeIngreso = fechadeIngreso;
-	}	
+	
+	
+	
+	
 }

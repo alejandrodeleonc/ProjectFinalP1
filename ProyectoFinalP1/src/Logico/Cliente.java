@@ -6,43 +6,35 @@ public abstract class Cliente {
 	
 	protected int codigo;
 	protected String nombre;
-	protected String apellido;
+	protected double telefono;
 	protected String direccion;
-	protected String telefono;
-	protected String fechadeNacimiento;
-	protected String fechadeIngreso;
 	protected ArrayList<Plan> misPlanes;
-	
-	
-	public Cliente(int cod, String nombre, String apellido, String direccion, String telefono, String fechadeNacimiento,
-			String fechadeIngreso) {
+	protected ArrayList<Factura> misFacturas;
+	protected boolean estado;
+	public Cliente(int codigo, String nombre, double telefono, String direccion) {
 		super();
-		this.codigo = cod;
+		this.codigo = codigo;
 		this.nombre = nombre;
-		this.apellido = apellido;
-		this.direccion = direccion;
 		this.telefono = telefono;
-		this.fechadeNacimiento = fechadeNacimiento;
-		this.fechadeIngreso = fechadeIngreso;
+		this.direccion = direccion;
 		this.misPlanes = new ArrayList<>();
+		this.misFacturas = new ArrayList<>();
+		this.estado = true;
 	}
-	
-	
 	public int getCodigo() {
 		return codigo;
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getApellido() {
-		return apellido;
+	public double getTelefono() {
+		return telefono;
 	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setTelefono(double telefono) {
+		this.telefono = telefono;
 	}
 	public String getDireccion() {
 		return direccion;
@@ -50,29 +42,27 @@ public abstract class Cliente {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public String getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-	public String getFechadeNacimiento() {
-		return fechadeNacimiento;
-	}
-	public void setFechadeNacimiento(String fechadeNacimiento) {
-		this.fechadeNacimiento = fechadeNacimiento;
-	}
-	public String getFechadeIngreso() {
-		return fechadeIngreso;
-	}
-	public void setFechadeIngreso(String fechadeIngreso) {
-		this.fechadeIngreso = fechadeIngreso;
-	}
 	public ArrayList<Plan> getMisPlanes() {
 		return misPlanes;
 	}
-	public void addPlan(Plan nuevoPlan) {
-		this.misPlanes.add(nuevoPlan);
+	public void addPlan(Plan plan) {
+		this.misPlanes.add(plan);
+	}
+	public ArrayList<Factura> getMisFacturas() {
+		return misFacturas;
+	}
+	public void addFactura(Factura factura) {
+		this.misFacturas.add(factura);
+	}
+	public boolean getEstado() {
+		return estado;
+	}
+	public void setEstado() {
+		if(this.estado) {
+			this.estado = false;
+		}else{
+			this.estado = true;
+		}
 	}
 	
 }

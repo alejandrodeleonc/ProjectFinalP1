@@ -4,136 +4,198 @@ import java.util.ArrayList;
 
 public class Tricom {
 	
-	private ArrayList<Cliente> clientes;
-	private ArrayList<Empleado> empleados;
-	private ArrayList<Plan> planes;
-	private ArrayList<Contrato> contratos;
+	private ArrayList<Cliente> misClientes;
+	private ArrayList<Empleado> misEmpleados;
+	private ArrayList<Factura> misFacturas;
+	private ArrayList<Plan> misPlanes;
+	private ArrayList<Contrato> misContratos;
 	private static Tricom tricom;
 	
+	//Esto permite tener la clase controladora
+		public static Tricom getInstance() {
+			if(tricom == null) {
+				tricom = new Tricom();
+			}
+			
+			return tricom;
+		}
+		
 	private Tricom() {
 		super();
-		this.clientes = new ArrayList<>();
-		this.empleados = new ArrayList<>();
-		this.planes = new ArrayList<>();
-		this.contratos = new ArrayList<>();
+		this.misClientes = new ArrayList<>();
+		this.misEmpleados = new ArrayList<>();
+		this.misFacturas = new ArrayList<>();
+		this.misPlanes = new ArrayList<>();
+		this.misContratos = new ArrayList<>();
 	}
-	public static Tricom getInstance() {
-		if(tricom == null) {
-			tricom = new Tricom();
-		}
-		return tricom;
-	}
+
 	public ArrayList<Cliente> getMisClientes() {
-		return clientes;
+		return misClientes;
 	}
-	public void setMisClientes(Cliente cliente) {
-		this.clientes.add(cliente);
+
+	public void addClientes(Cliente cliente) {
+		this.misClientes.add(cliente);
 	}
+
 	public ArrayList<Empleado> getMisEmpleados() {
-		return empleados;
+		return misEmpleados;
 	}
-	public void setMisEmpleados(Empleado empleado) {
-		this.empleados.add(empleado);
+
+	public void addEmpleados(Empleado empleado) {
+		this.misEmpleados.add(empleado);
 	}
+
+	public ArrayList<Factura> getMisFacturas() {
+		return misFacturas;
+	}
+
+	public void addFacturas(Factura factura) {
+		this.misFacturas.add(factura);
+	}
+
 	public ArrayList<Plan> getMisPlanes() {
-		return planes;
+		return misPlanes;
 	}
-	public void setMisPlanes(Plan plan) {
-		this.planes.add(plan);
+
+	public void addPlanes(Plan plan) {
+		this.misPlanes.add(plan);
 	}
+
 	public ArrayList<Contrato> getMisContratos() {
-		return contratos;
+		return misContratos;
 	}
-	public void setMisContratos(Contrato contrato) {
-		this.contratos.add(contrato);
+
+	public void addContratos(Contrato contrato) {
+		this.misContratos.add(contrato);
 	}
-	public Cliente findclientbycode(int code) {
-		// TODO Auto-generated method stub
-		 Cliente aux = null;
-		 boolean find = false;
-		 int i = 0;
-		 while( i < clientes.size() && !find){
-			 if(clientes.get(i).getCodigo() == code)
-			 {
-				 aux = clientes.get(i);
-				 find = true;
+	
+	//Busca un cliente dentro del arreglo, por su codigo.
+	public Cliente buscarclienteporcodigo(int code) {
+		Cliente aux = null;
+		boolean encontrado = false;
+		int i = 0;
+		
+		while(i < misClientes.size() && !encontrado) {
+			if(misClientes.get(i).getCodigo() == code) {
+				aux = misClientes.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
+	
+	//Este metodo busca por cedula o por RNC
+	public Cliente buscarporcedulaornc(double c) {
+		Cliente aux =  null;
+		boolean encontrado = false;
+		int i = 0;
+		
+		while(i< misClientes.size() && !encontrado) {
+			if(misClientes.get(i) instanceof Empresarial) {
+				if(((Empresarial) misClientes.get(i)).getRnc() == c ) {
+					aux = misClientes.get(i);
+					encontrado = true;
+				}
+			}else if((misClientes.get(i) instanceof Personal)) {
+				if(((Personal) misClientes.get(i)).getCedula() == c ) {
+					aux = misClientes.get(i);
+					encontrado = true;
+				}
 				 
-			  }
-			 i++;
-			 }
-		 return aux;
-	 }
-
-	public Empleado findpersonalbyname (String nombre) {
+			}
+			i++;
+		}
 		
-		 Empleado aux = null;
-		 boolean find = false;
-		 int i = 0;
-		 while( i < empleados.size() && !find){
-			 if(empleados.get(i).getNombre().equalsIgnoreCase(nombre))
-			 {
-				 find = true;
-				 aux = empleados.get(i);
-			  }
-			 i++;
-			 }
-		 return aux;
-	 }
-
-	public Plan findplanbycode (String name) {
+		return aux;
+	}
+	
+	//Este busca empleados
+	public Empleado buscarempleadoporcodigo(int code) {
+		Empleado aux = null;
+		boolean encontrado = false;
+		int i = 0;
 		
-		 Plan aux = null;
-		 boolean find = false;
-		 int i = 0;
-		 while( i < planes.size() && !find){
-			 if(planes.get(i).getNombrePlan().equalsIgnoreCase(name))
-			 {
-				 find = true;
-				 aux = planes.get(i);
-			  }
-			 i++;
-			 }
-		 return aux;
-	 }
-	public void updatePersonal(Empleado aux1) {
-		int index = 0;
-		int i=0;
-		boolean find = false;
-		while (!find && i<empleados.size()) {
-			if(empleados.get(i).getNombre().equalsIgnoreCase(aux1.getNombre())){
-				find = true;
-				index = i;
+		while(i<misEmpleados.size() && !encontrado) {
+			if (misEmpleados.get(i).getCodigo() == code) {
+				aux = misEmpleados.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
+	
+	public int cantidadClientesactivos() {
+		int cant = 0;
+		
+		for (Cliente cliente : misClientes) {
+			if(cliente.getEstado()) {
+				cant++;
 			}
 		}
-		empleados.set(index,aux1);
+		return cant;
+	}
+	
+	//Este metodo edita los empleados
+	public void editarEmpleado(Empleado aux) {
+		int index = 0;
+		
+		index = misEmpleados.indexOf(aux);
+		misEmpleados.set(index, aux);		
+	}
+	
+	//Este metodo edita los clientes
+	public void editarCliente(Cliente aux) {
+		int index = 0;
+		
+		index = misClientes.indexOf(aux);
+		misClientes.set(index, aux);		
+	}
+	
+	public void editarPlan(Plan aux) {
+		int index = 0;
+		
+		index = misPlanes.indexOf(aux);
+		misPlanes.set(index, aux);		
+	}
+	
+	//Este metodo busca una factura por la cedula de un cliente
+	public Factura buscarFacturaporcedornc(double c) {
+		Factura aux =  null;
+		boolean encontrado =  false;
+		int i = 0;
+		
+		while(i< misFacturas.size() && !encontrado) {
+			Cliente cliente =  misFacturas.get(i).getMiCliente();
+			cliente = (Empresarial)cliente;
+			if(((Empresarial) cliente).getRnc() == c) {
+					aux = misFacturas.get(i);
+			}else if (((Personal)cliente).getCedula() == c){
+				aux =  misFacturas.get(i);
+			}
+			i++;
+		}
+		return aux;
 	} 
 	
-	
-
-	public void updateclient(Cliente aux1) {
-		int index = 0;
-		int i=0;
-		boolean find = false;
-		while (!find && i<clientes.size()) {
-			if(clientes.get(i).getNombre().equalsIgnoreCase(aux1.getNombre())){
-				find = true;
-				index = i;
+	public Contrato buscarContratoporcedulaornc( double c, int id) {
+		Contrato aux = null;
+		
+		boolean encontrado =  false;
+		int i = 0;
+		
+		while(i< misContratos.size() && !encontrado) {
+			Cliente cliente =  misContratos.get(i).getMiCliente();
+			Empleado emp = misContratos.get(i).getMiEmpleado();
+			if(((Empresarial) cliente).getRnc() == c && (emp.getCodigo() == id)) {
+					aux = misContratos.get(i);
+			}else if (((Personal)cliente).getCedula() == c && (emp.getCodigo() == id)){
+				aux =  misContratos.get(i);
 			}
+			i++;
 		}
-		clientes.set(index,aux1);
-	}
-
-	public void updatePlan(Plan plan) {
-		int index = 0;
-		int i=0;
-		boolean find = false;
-		while (!find && i<planes.size()) {
-			if(planes.get(i).getNombrePlan().equalsIgnoreCase(plan.getNombrePlan())){
-				find = true;
-				index = i;
-			}
-		}
-		planes.set(index,plan);
+		return aux;
 	}
 
 

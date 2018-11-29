@@ -4,20 +4,11 @@ import java.util.ArrayList;
 
 public class Empresarial extends Cliente {
 	
-	private double rnc;
 	private String nombreEmpresa;
-	
-	public Empresarial(int codigo, String nombre, String apellido, String direccion, String telefono, String fechadeNacimiento,
-			String fechadeIngreso, double rnc, String nombreEmpresa) {
-		super(codigo, nombre, apellido, direccion, telefono, fechadeNacimiento, fechadeIngreso);
-		this.rnc = rnc;
+	private double rnc;
+	public Empresarial(int codigo, String nombre, double telefono, String direccion, String nombreEmpresa, double rnc) {
+		super(codigo, nombre, telefono, direccion);
 		this.nombreEmpresa = nombreEmpresa;
-	}
-
-	public double getRnc() {
-		return rnc;
-	}
-	public void setRnc(double rnc) {
 		this.rnc = rnc;
 	}
 	public String getNombreEmpresa() {
@@ -26,5 +17,11 @@ public class Empresarial extends Cliente {
 	public void setNombreEmpresa(String nombreEmpresa) {
 		this.nombreEmpresa = nombreEmpresa;
 	}
-
+	public double getRnc() {
+		return rnc;
+	}
+	public void setRnc(double rnc) {
+		this.rnc = rnc;
+	}
+	
 }
