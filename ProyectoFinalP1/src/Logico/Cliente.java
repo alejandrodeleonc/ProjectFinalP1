@@ -57,6 +57,8 @@ public abstract class Cliente {
 	public boolean getEstado() {
 		return estado;
 	}
+	
+	//metodo para validar el estado de un cliente, activo o desactivado.
 	public void setEstado() {
 		if(this.estado) {
 			this.estado = false;

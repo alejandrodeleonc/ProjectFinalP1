@@ -56,6 +56,8 @@ public class Contrato {
 	public double getPrecioBruto() {
 		return precioBruto;
 	}
+	
+	//Metodo para obtener precio total a pagar.
 	public double setPrecioBruto() {
 		double total;
 		total = (this.precioneto * 1.3);

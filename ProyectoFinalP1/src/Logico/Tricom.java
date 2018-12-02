@@ -179,6 +179,7 @@ public class Tricom {
 		return aux;
 	} 
 	
+	//Metod de busqueda de contrato mediante cedula o rnc.
 	public Contrato buscarContratoporcedulaornc( double c, int id) {
 		Contrato aux = null;
 		
