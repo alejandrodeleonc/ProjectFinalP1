@@ -1,8 +1,9 @@
 package Logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Cliente {
+public abstract class Cliente implements Serializable {
 	
 	protected int codigo;
 	protected String nombre;

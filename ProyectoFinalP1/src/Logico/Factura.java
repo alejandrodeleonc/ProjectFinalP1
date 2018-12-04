@@ -1,8 +1,8 @@
 package Logico;
 
 import java.util.Date;
-
-public class Factura {
+import java.io.Serializable;
+public class Factura implements Serializable {
 	
 	private int codigo;
 	private double precioneto;

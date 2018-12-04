@@ -1,8 +1,8 @@
 package Logico;
 
 import java.util.ArrayList;
-
-public class Contrato {
+import java.io.Serializable;
+public class Contrato  implements Serializable{
 	
 	private int codigo;
 	private Empleado miEmpleado;

@@ -17,6 +17,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 
+import Logico.Tricom;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -26,7 +28,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-public class Main {
+public class Main  {
 
 	private static final int MAXIMIZED_BOTH = 0;
 	private JFrame frame;
@@ -54,6 +56,16 @@ public class Main {
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension d = tk.getScreenSize();
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Tricom.getInstance().guardar();
+			}
+			@Override
+			public void windowOpened(WindowEvent e) {
+				Tricom.getInstance().cargardatos();
+			}
+		});
 
 		
 		frame.setResizable(false);
@@ -72,10 +84,27 @@ public class Main {
 		menuBar.add(mnClientes);
 		
 		JMenuItem mntmAdmPub = new JMenuItem("Nuevo cliente");
+		mntmAdmPub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NuevoCliente o = new NuevoCliente();
+				o.setModal(true);
+				o.setLocationRelativeTo(null);
+				o.setVisible(true);
+				
+			}
+		});
+	
 	
 		mnClientes.add(mntmAdmPub);
 		
 		JMenuItem mntmNuevaPublicacion = new JMenuItem("Registro de clientes");
+		mntmNuevaPublicacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Registroclientes.getInstance().setModal(true);
+				Registroclientes.getInstance().setLocationRelativeTo(null);
+				Registroclientes.getInstance().setVisible(true);
+			}
+		});
 		
 		mnClientes.add(mntmNuevaPublicacion);
 		

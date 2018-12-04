@@ -1,8 +1,16 @@
 package Logico;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Tricom {
+public class Tricom implements Serializable{
 	
 	private ArrayList<Cliente> misClientes;
 	private ArrayList<Empleado> misEmpleados;
@@ -198,6 +206,45 @@ public class Tricom {
 		}
 		return aux;
 	}
+	
+	public void guardar() {
+		FileOutputStream archivo;
+		ObjectOutputStream escribir;
+		try {
+			archivo = new  FileOutputStream("datos.dat");
+			escribir = new ObjectOutputStream(archivo);
+			escribir.writeObject(Tricom.getInstance());
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	public void cargardatos() {
+		
+		try {
+			FileInputStream archivo = new FileInputStream("datos.dat");
+			ObjectInputStream lectura = new ObjectInputStream(archivo);
+			
+			while(true) {
+				this.tricom = (Tricom)lectura.readObject();
+			}
+			
+		}catch(EOFException ex) {
+			return;
+		}catch(FileNotFoundException ex) {
+			System.err.println("Error, "+ex);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		}
 
 
 }
