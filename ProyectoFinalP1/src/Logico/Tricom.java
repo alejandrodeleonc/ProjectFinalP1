@@ -10,24 +10,24 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.io.Serializable;
 
-public class Tricom implements Serializable{
-	
+public class Tricom implements Serializable {
+
 	private ArrayList<Cliente> misClientes;
 	private ArrayList<Empleado> misEmpleados;
 	private ArrayList<Factura> misFacturas;
 	private ArrayList<Plan> misPlanes;
 	private ArrayList<Contrato> misContratos;
 	private static Tricom tricom;
-	
-	//Esto permite tener la clase controladora
-		public static Tricom getInstance() {
-			if(tricom == null) {
-				tricom = new Tricom();
-			}
-			
-			return tricom;
+
+	// Esto permite tener la clase controladora
+	public static Tricom getInstance() {
+		if (tricom == null) {
+			tricom = new Tricom();
 		}
-		
+
+		return tricom;
+	}
+
 	private Tricom() {
 		super();
 		this.misClientes = new ArrayList<>();
@@ -76,15 +76,15 @@ public class Tricom implements Serializable{
 	public void addContratos(Contrato contrato) {
 		this.misContratos.add(contrato);
 	}
-	
-	//Busca un cliente dentro del arreglo, por su codigo.
+
+	// Busca un cliente dentro del arreglo, por su codigo.
 	public Cliente buscarclienteporcodigo(int code) {
 		Cliente aux = null;
 		boolean encontrado = false;
 		int i = 0;
-		
-		while(i < misClientes.size() && !encontrado) {
-			if(misClientes.get(i).getCodigo() == code) {
+
+		while (i < misClientes.size() && !encontrado) {
+			if (misClientes.get(i).getCodigo() == code) {
 				aux = misClientes.get(i);
 				encontrado = true;
 			}
@@ -92,39 +92,46 @@ public class Tricom implements Serializable{
 		}
 		return aux;
 	}
-	
-	//Este metodo busca por cedula o por RNC
-	public Cliente buscarporcedulaornc(double c) {
-		Cliente aux =  null;
+
+	// Este metodo busca por cedula o por RNC
+	public Cliente buscarporcedulaornc(double c, boolean cedulaOrRnc) {
+		Cliente aux = null;
 		boolean encontrado = false;
 		int i = 0;
-		
-		while(i< misClientes.size() && !encontrado) {
-			if(misClientes.get(i) instanceof Empresarial) {
-				if(((Empresarial) misClientes.get(i)).getRnc() == c ) {
-					aux = misClientes.get(i);
-					encontrado = true;
+
+		while (i < misClientes.size() && !encontrado) {
+
+			if (cedulaOrRnc == true) {
+				if (misClientes.get(i) instanceof Empresarial) {
+					if (((Empresarial) misClientes.get(i)).getRnc() == c) {
+						aux = misClientes.get(i);
+						encontrado = true;
+					}
 				}
-			}else if((misClientes.get(i) instanceof Personal)) {
-				if(((Personal) misClientes.get(i)).getCedula() == c ) {
-					aux = misClientes.get(i);
-					encontrado = true;
-				}
-				 
 			}
+
+			if (cedulaOrRnc == false) {
+				if ((misClientes.get(i) instanceof Personal)) {
+					if (((Personal) misClientes.get(i)).getCedula() == c) {
+						aux = misClientes.get(i);
+						encontrado = true;
+					}
+				}
+			}
+
 			i++;
 		}
-		
+
 		return aux;
 	}
-	
-	//Este busca empleados
+
+	// Este busca empleados
 	public Empleado buscarempleadoporcodigo(int code) {
 		Empleado aux = null;
 		boolean encontrado = false;
 		int i = 0;
-		
-		while(i<misEmpleados.size() && !encontrado) {
+
+		while (i < misEmpleados.size() && !encontrado) {
 			if (misEmpleados.get(i).getCodigo() == code) {
 				aux = misEmpleados.get(i);
 				encontrado = true;
@@ -133,85 +140,85 @@ public class Tricom implements Serializable{
 		}
 		return aux;
 	}
-	
+
 	public int cantidadClientesactivos() {
 		int cant = 0;
-		
+
 		for (Cliente cliente : misClientes) {
-			if(cliente.getEstado()) {
+			if (cliente.getEstado()) {
 				cant++;
 			}
 		}
 		return cant;
 	}
-	
-	//Este metodo edita los empleados
+
+	// Este metodo edita los empleados
 	public void editarEmpleado(Empleado aux) {
 		int index = 0;
-		
+
 		index = misEmpleados.indexOf(aux);
-		misEmpleados.set(index, aux);		
+		misEmpleados.set(index, aux);
 	}
-	
-	//Este metodo edita los clientes
+
+	// Este metodo edita los clientes
 	public void editarCliente(Cliente aux) {
 		int index = 0;
-		
+
 		index = misClientes.indexOf(aux);
-		misClientes.set(index, aux);		
+		misClientes.set(index, aux);
 	}
-	
+
 	public void editarPlan(Plan aux) {
 		int index = 0;
-		
+
 		index = misPlanes.indexOf(aux);
-		misPlanes.set(index, aux);		
+		misPlanes.set(index, aux);
 	}
-	
-	//Este metodo busca una factura por la cedula de un cliente
+
+	// Este metodo busca una factura por la cedula de un cliente
 	public Factura buscarFacturaporcedornc(double c) {
-		Factura aux =  null;
-		boolean encontrado =  false;
+		Factura aux = null;
+		boolean encontrado = false;
 		int i = 0;
-		
-		while(i< misFacturas.size() && !encontrado) {
-			Cliente cliente =  misFacturas.get(i).getMiCliente();
-			cliente = (Empresarial)cliente;
-			if(((Empresarial) cliente).getRnc() == c) {
-					aux = misFacturas.get(i);
-			}else if (((Personal)cliente).getCedula() == c){
-				aux =  misFacturas.get(i);
-			}
-			i++;
-		}
-		return aux;
-	} 
-	
-	//Metod de busqueda de contrato mediante cedula o rnc.
-	public Contrato buscarContratoporcedulaornc( double c, int id) {
-		Contrato aux = null;
-		
-		boolean encontrado =  false;
-		int i = 0;
-		
-		while(i< misContratos.size() && !encontrado) {
-			Cliente cliente =  misContratos.get(i).getMiCliente();
-			Empleado emp = misContratos.get(i).getMiEmpleado();
-			if(((Empresarial) cliente).getRnc() == c && (emp.getCodigo() == id)) {
-					aux = misContratos.get(i);
-			}else if (((Personal)cliente).getCedula() == c && (emp.getCodigo() == id)){
-				aux =  misContratos.get(i);
+
+		while (i < misFacturas.size() && !encontrado) {
+			Cliente cliente = misFacturas.get(i).getMiCliente();
+			cliente = (Empresarial) cliente;
+			if (((Empresarial) cliente).getRnc() == c) {
+				aux = misFacturas.get(i);
+			} else if (((Personal) cliente).getCedula() == c) {
+				aux = misFacturas.get(i);
 			}
 			i++;
 		}
 		return aux;
 	}
-	
+
+	// Metod de busqueda de contrato mediante cedula o rnc.
+	public Contrato buscarContratoporcedulaornc(double c, int id) {
+		Contrato aux = null;
+
+		boolean encontrado = false;
+		int i = 0;
+
+		while (i < misContratos.size() && !encontrado) {
+			Cliente cliente = misContratos.get(i).getMiCliente();
+			Empleado emp = misContratos.get(i).getMiEmpleado();
+			if (((Empresarial) cliente).getRnc() == c && (emp.getCodigo() == id)) {
+				aux = misContratos.get(i);
+			} else if (((Personal) cliente).getCedula() == c && (emp.getCodigo() == id)) {
+				aux = misContratos.get(i);
+			}
+			i++;
+		}
+		return aux;
+	}
+
 	public void guardar() {
 		FileOutputStream archivo;
 		ObjectOutputStream escribir;
 		try {
-			archivo = new  FileOutputStream("datos.dat");
+			archivo = new FileOutputStream("datos.dat");
 			escribir = new ObjectOutputStream(archivo);
 			escribir.writeObject(Tricom.getInstance());
 		} catch (FileNotFoundException e1) {
@@ -222,20 +229,21 @@ public class Tricom implements Serializable{
 			e1.printStackTrace();
 		}
 	}
+
 	public void cargardatos() {
-		
+
 		try {
 			FileInputStream archivo = new FileInputStream("datos.dat");
 			ObjectInputStream lectura = new ObjectInputStream(archivo);
-			
-			while(true) {
-				this.tricom = (Tricom)lectura.readObject();
+
+			while (true) {
+				this.tricom = (Tricom) lectura.readObject();
 			}
-			
-		}catch(EOFException ex) {
+
+		} catch (EOFException ex) {
 			return;
-		}catch(FileNotFoundException ex) {
-			System.err.println("Error, "+ex);
+		} catch (FileNotFoundException ex) {
+			System.err.println("Error, " + ex);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -243,9 +251,7 @@ public class Tricom implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		}
 
+	}
 
 }
-
