@@ -78,6 +78,8 @@ public class Plan implements Serializable{
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	
+	//Esto es una prueba de funcionamiento.
 		
 	
 }
