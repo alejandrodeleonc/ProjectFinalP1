@@ -17,6 +17,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 
+import Logico.Cliente;
 import Logico.Tricom;
 
 import java.awt.event.ActionListener;
@@ -124,11 +125,24 @@ public class Main  {
 		JMenu mnInformacion = new JMenu("Facturacion");		
 		menuBar.add(mnInformacion);
 		
-		JMenuItem mntmPagos = new JMenuItem("Pagos");
+		JMenuItem mntmPagos = new JMenuItem("Ver facturas cliente");
+		mntmPagos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Facturacion o = new Facturacion();
+				o.setLocationRelativeTo(null);
+				o.setVisible(true);
+			}
+		});
 		mnInformacion.add(mntmPagos);
 		
-		JMenuItem menuItem = new JMenuItem("New menu item");
-		mnInformacion.add(menuItem);
+		JMenuItem mntmGenerarFactura = new JMenuItem("Generar Factura");
+		mntmGenerarFactura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Tricom.getInstance().generarfacturas();
+			}
+		});
+	
+		mnInformacion.add(mntmGenerarFactura);
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {

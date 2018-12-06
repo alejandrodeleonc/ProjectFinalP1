@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.io.Serializable;
 
 public class Tricom implements Serializable {
@@ -109,7 +110,6 @@ public class Tricom implements Serializable {
 					}
 				}
 			}
-
 			if (cedulaOrRnc == false) {
 				if ((misClientes.get(i) instanceof Personal)) {
 					if (((Personal) misClientes.get(i)).getCedula() == c) {
@@ -118,10 +118,8 @@ public class Tricom implements Serializable {
 					}
 				}
 			}
-
 			i++;
 		}
-
 		return aux;
 	}
 
@@ -252,6 +250,18 @@ public class Tricom implements Serializable {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void generarfacturas() {
+		double precioneto = 0;
+		Date fecha = new Date();
+		for (Cliente cliente : misClientes) {
+			for(int i = 0; i<cliente.getMisPlanes().size(); i++) {
+				precioneto +=  cliente.getMisPlanes().get(i).getPrecio();
+			}
+			Factura f = new Factura(misFacturas.size()+1, precioneto, (precioneto*1.18), false, fecha , cliente);
+			Tricom.getInstance().misFacturas.add(f);
+		}
 	}
 
 }

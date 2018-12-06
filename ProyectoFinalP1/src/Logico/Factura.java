@@ -26,6 +26,7 @@ public class Factura implements Serializable {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+	
 	public double getPrecioneto() {
 		return precioneto;
 	}
