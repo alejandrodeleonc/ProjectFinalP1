@@ -193,7 +193,7 @@ public class Registroclientes extends JDialog {
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Cliente p = Tricom.getInstance().buscarclientegrasa(Double.parseDouble(textField.getText()));
+				Cliente p = Tricom.getInstance().buscarporcedulaornc(Double.parseDouble(textField.getText()), false);
 				if(p == null) {
 					lblResultado.setText("No hay resultados de busqueda");
 				}else {

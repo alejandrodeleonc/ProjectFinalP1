@@ -46,19 +46,6 @@ public class Facturacion extends JDialog {
 	private Cliente c = null;
 	private JList<String> list_pago;
 	private JList<String> list_deudas;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Facturacion dialog = new Facturacion();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
@@ -72,7 +59,7 @@ public class Facturacion extends JDialog {
 			}
 		});
 		setResizable(false);
-		setTitle("FACTURAS");
+		setTitle("BUSCAR FACTURAS");
 		
 		setBounds(100, 100, 565, 619);
 		contentPane = new JPanel();
@@ -219,11 +206,11 @@ public class Facturacion extends JDialog {
 		btnPagar.setBounds(384, 244, 84, 22);
 		panel_1.add(btnPagar);
 		
-		list_deudas = new JList();
+		list_deudas = new JList<String>();
 		list_deudas.setBounds(36, 236, 168, -190);
 		panel_1.add(list_deudas);
 		
-		list_pago = new JList();
+		list_pago = new JList<String>();
 		list_pago.setBounds(288, 220, 155, -174);
 		panel_1.add(list_pago);
 		
@@ -247,5 +234,6 @@ public class Facturacion extends JDialog {
 			
 			}
 		}
+	
 	}
 
