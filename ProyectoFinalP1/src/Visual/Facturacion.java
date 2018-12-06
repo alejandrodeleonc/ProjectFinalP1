@@ -21,6 +21,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Facturacion extends JDialog {
 	private JPanel contentPane;
@@ -42,10 +44,33 @@ public class Facturacion extends JDialog {
 	private JLabel lblRNC ;
 	private JButton btnPagar;
 	private Cliente c = null;
-	private JList list_1;
-	private JList list;
+	private JList<String> list_pago;
+	private JList<String> list_deudas;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			Facturacion dialog = new Facturacion();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
 
 	public Facturacion() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				cargarlistas();
+			}
+		});
 		setResizable(false);
 		setTitle("FACTURAS");
 		
@@ -194,13 +219,13 @@ public class Facturacion extends JDialog {
 		btnPagar.setBounds(384, 244, 84, 22);
 		panel_1.add(btnPagar);
 		
-		list = new JList();
-		list.setBounds(36, 236, 168, -190);
-		panel_1.add(list);
+		list_deudas = new JList();
+		list_deudas.setBounds(36, 236, 168, -190);
+		panel_1.add(list_deudas);
 		
-		list_1 = new JList();
-		list_1.setBounds(288, 220, 155, -174);
-		panel_1.add(list_1);
+		list_pago = new JList();
+		list_pago.setBounds(288, 220, 155, -174);
+		panel_1.add(list_pago);
 		
 		btnNewButton = new JButton("Salir");
 		btnNewButton.setBounds(460, 556, 89, 23);
@@ -215,12 +240,12 @@ public class Facturacion extends JDialog {
 					pagas.addElement(fac.getFechaEmision().toString());
 				}else {
 					deuda.addElement(fac.getFechaEmision().toString());
+					}
 				}
-			}
-//			List<Integer>deuda;
-//			list_1.setModel(pagas);
+			list_deudas.setModel(deuda);
+			list_pago.setModel(pagas);
 			
+			}
 		}
-	}
 	}
 

@@ -40,7 +40,7 @@ public class NuevoCliente extends JDialog {
 	private JLabel lblNombreEmpresa;
 	private JTextField textField;
 
-	public  NuevoCliente(Cliente c) {
+	public  NuevoCliente(final Cliente c) {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent e) {

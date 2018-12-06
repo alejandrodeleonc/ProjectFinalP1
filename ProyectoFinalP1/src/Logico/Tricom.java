@@ -93,28 +93,7 @@ public class Tricom implements Serializable {
 		}
 		return aux;
 	}
-	public Cliente buscarclientegrasa(Double c) {
-		Cliente aux = null;
-		boolean encontrado = false;
-		int i = 0;
 
-		while (i < misClientes.size() && !encontrado) {
-			if (misClientes.get(i) instanceof Empresarial) {
-				if (((Empresarial) misClientes.get(i)).getRnc() == c) {
-						aux = misClientes.get(i);
-						encontrado = true;	
-				}
-			}else if(misClientes.get(i) instanceof Personal) {
-					if(((Personal) misClientes.get(i)).getCedula() == c) {
-						aux = misClientes.get(i);
-						encontrado = true;
-					}
-				}
-			
-			i++;
-		}
-		return aux;
-	}
 	// Este metodo busca por cedula o por RNC
 	public Cliente buscarporcedulaornc(double c, boolean cedulaOrRnc) {
 		Cliente aux = null;
