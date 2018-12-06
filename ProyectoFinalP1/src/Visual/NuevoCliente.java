@@ -17,6 +17,8 @@ import java.awt.Color;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class NuevoCliente extends JDialog {
 	private JTextField txNombre;
@@ -38,8 +40,21 @@ public class NuevoCliente extends JDialog {
 	private JLabel lblNombreEmpresa;
 	private JTextField textField;
 
-	public  NuevoCliente() {
-	
+	public  NuevoCliente(Cliente c) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				if(c != null) {
+					setTitle("Modificar Cliente");
+					llenar(c);
+				}else {
+					setTitle("Nuevo Cliente");
+				}
+			}
+		});
+		
+		
+		
 		setBounds(100, 100, 525, 399);
 		getContentPane().setLayout(null);
 		
@@ -124,7 +139,7 @@ public class NuevoCliente extends JDialog {
 		txID.setEditable(false);
 		txID.setColumns(10);
 		txID.setBounds(66, 26, 346, 20);
-		txID.setText(Integer.toString((Tricom.getInstance().getMisClientes().size()+1)));
+		txID.setText(String.valueOf(Tricom.getInstance().getMisClientes().size()+1));
 		pnInf.add(txID);
 		
 		
@@ -162,7 +177,8 @@ public class NuevoCliente extends JDialog {
 						Empresarial cliente = new Empresarial(id, nombre, tel, direccion, nombreemp, ced);
 						Tricom.getInstance().addClientes(cliente);
 					}
-					System.out.println(Tricom.getInstance().getMisClientes().get(0).getNombre());
+					JOptionPane.showMessageDialog(null, "Ciente se ha creado exisitosamente", "ATENCION", JOptionPane.INFORMATION_MESSAGE, null);
+					clean();
 				}
 			}
 		});
@@ -173,4 +189,36 @@ public class NuevoCliente extends JDialog {
 		btnCancelar.setBounds(257, 298, 108, 41);
 		getContentPane().add(btnCancelar);
 	}
+	
+	public void clean() {
+		textField.setText("");
+		txDireccion.setText("");
+		txCR.setText("");
+		txID.setText("");
+		txNombre.setText("");
+		txRNC.setText("");
+	}
+	
+	public void llenar(Cliente c) {
+		if(c instanceof Empresarial) {
+			textField.setEditable(true);
+			textField.setText(((Empresarial) c).getNombreEmpresa());
+			lbCR.setText("RNC");
+			txCR.setText(String.valueOf(((Empresarial)c).getRnc()));
+			rdbtnEmpresarial.setSelected(true);
+			rdbtnPersonal.setSelected(false);
+		}else {
+			textField.setEditable(false);
+			lbCR.setText("Cedula");
+			txCR.setText(String.valueOf(((Personal)c).getCedula()));
+			rdbtnEmpresarial.setSelected(false);
+			rdbtnPersonal.setSelected(true);
+		}
+		
+		txDireccion.setText(c.getDireccion());
+		txID.setText(String.valueOf(c.getCodigo()));
+		txNombre.setText(c.getNombre());
+		txRNC.setText(String.valueOf(c.getTelefono()));
+	}
+	
 }
