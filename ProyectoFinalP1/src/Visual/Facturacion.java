@@ -23,6 +23,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Facturacion extends JDialog {
 	private JPanel contentPane;
@@ -46,6 +48,20 @@ public class Facturacion extends JDialog {
 	private Cliente c = null;
 	private JList<String> list_pago;
 	private JList<String> list_deudas;
+	private JPanel panel_2;
+	private JLabel label;
+	private JTextField textField;
+	private JLabel label_1;
+	private JTextField textField_1;
+	private JLabel label_2;
+	private JTextField textField_2;
+	private JLabel label_3;
+	private JTextField textField_3;
+	private JLabel label_4;
+	private JTextField textField_4;
+	private JLabel label_5;
+	private JLabel label_6;
+	private JTextField textField_5;
 
 	/**
 	 * Create the dialog.
@@ -61,7 +77,7 @@ public class Facturacion extends JDialog {
 		setResizable(false);
 		setTitle("BUSCAR FACTURAS");
 		
-		setBounds(100, 100, 565, 619);
+		setBounds(100, 100, 790, 619);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -203,6 +219,10 @@ public class Facturacion extends JDialog {
 		panel_1.add(lblFacturasPagadas);
 		
 		btnPagar = new JButton("Pagar");
+		btnPagar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+		});
 		btnPagar.setBounds(384, 244, 84, 22);
 		panel_1.add(btnPagar);
 		
@@ -215,8 +235,76 @@ public class Facturacion extends JDialog {
 		panel_1.add(list_pago);
 		
 		btnNewButton = new JButton("Salir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setDefaultCloseOperation(EXIT_ON_CLOSE);
+			}
+		});
 		btnNewButton.setBounds(460, 556, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		panel_2 = new JPanel();
+		panel_2.setBounds(541, 243, 493, 274);
+		contentPane.add(panel_2);
+		panel_2.setLayout(null);
+		
+		label = new JLabel("Plan");
+		label.setBounds(47, 62, 46, 14);
+		panel_2.add(label);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(109, 59, 150, 20);
+		panel_2.add(textField);
+		
+		label_1 = new JLabel("Precio neto");
+		label_1.setBounds(47, 87, 70, 20);
+		panel_2.add(label_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(109, 87, 150, 20);
+		panel_2.add(textField_1);
+		
+		label_2 = new JLabel("Precio bruto");
+		label_2.setBounds(47, 118, 60, 14);
+		panel_2.add(label_2);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(109, 115, 150, 20);
+		panel_2.add(textField_2);
+		
+		label_3 = new JLabel("Fecha de emision");
+		label_3.setBounds(47, 143, 95, 14);
+		panel_2.add(label_3);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(135, 140, 124, 20);
+		panel_2.add(textField_3);
+		
+		label_4 = new JLabel("Cliente");
+		label_4.setBounds(47, 37, 46, 14);
+		panel_2.add(label_4);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(109, 34, 150, 20);
+		panel_2.add(textField_4);
+		
+		label_5 = new JLabel("Informaci\u00F3n de la facura ");
+		label_5.setBounds(10, 12, 212, 14);
+		panel_2.add(label_5);
+		
+		label_6 = new JLabel("Fecha de pago");
+		label_6.setBounds(47, 168, 82, 14);
+		panel_2.add(label_6);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(135, 168, 124, 20);
+		panel_2.add(textField_5);
 	}
 	private void cargarlistas() {
 		if(c != null) {

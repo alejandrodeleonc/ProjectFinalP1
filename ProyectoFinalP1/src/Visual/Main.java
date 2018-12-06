@@ -28,8 +28,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
-public class Main implements Serializable {
+
+public class Main  {
 
 	private static final int MAXIMIZED_BOTH = 0;
 	private JFrame frame;
@@ -87,7 +87,7 @@ public class Main implements Serializable {
 		JMenuItem mntmAdmPub = new JMenuItem("Nuevo cliente");
 		mntmAdmPub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NuevoCliente o = new NuevoCliente(null);
+				NuevoCliente o = new NuevoCliente();
 				o.setModal(true);
 				o.setLocationRelativeTo(null);
 				o.setVisible(true);
@@ -117,14 +117,6 @@ public class Main implements Serializable {
 		mnPrestamos.add(mntmAdministradorDePrestamos);
 		
 		JMenuItem mntmAdministradorDePrestamos_1 = new JMenuItem("Nuevo empleado");
-		mntmAdministradorDePrestamos_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Nuevoempleado nue = new Nuevoempleado();
-				nue.setModal(true);
-				nue.setLocationRelativeTo(null);
-				nue.setVisible(true);
-			}
-		});
 		
 		
 	
@@ -146,7 +138,7 @@ public class Main implements Serializable {
 		JMenuItem mntmGenerarFactura = new JMenuItem("Generar Factura");
 		mntmGenerarFactura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Tricom.getInstance().generarfacturas();
+				Tricom.getInstance().ge
 			}
 		});
 	
